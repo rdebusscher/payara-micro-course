@@ -12,3 +12,21 @@ This work is licensed under a
 
 
 # Cloud Native Microservices with Payara Micro
+
+The demos and labs of the course.  Between brackets, attribution to the original source is indicate.
+
+## Demos
+
+- CDI (1)
+
+
+## Labs
+
+
+
+
+
+
+## References
+
+(1) - https://github.com/architects4j/payara-fastlane-demos/tree/main/cdi
