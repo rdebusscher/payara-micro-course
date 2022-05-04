@@ -18,7 +18,7 @@ The demos and labs of the course.  Between brackets, attribution to the original
 ## Demos
 
 - CDI (1)
-
+- JAX-RS
 
 ## Labs
 
