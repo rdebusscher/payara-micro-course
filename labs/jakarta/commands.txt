@@ -1,0 +1,42 @@
+# Build project
+mvn clean package
+
+# Run on Payara Micro (if not using Payara Micro plugin of IDE)
+java  -jar payara-micro.jar <path-to>/jaxrs-lab/target/shop.war
+
+# Run on Payara Micro with debug(if not using Payara Micro plugin of IDE)
+java '-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:9009' -jar payara-micro.jar <path-to>/jaxrs-lab/target/shop.war
+
+#Get a list of all Products
+curl 'http://localhost:8080/shop/product'
+
+#Get a list of all Products costing more than 20000.
+curl 'http://localhost:8080/shop/product?minPrice=20000'
+
+#Get a list of Bikes
+curl 'http://localhost:8080/shop/product?category=BIKE'
+
+# List the user
+curl 'http://localhost:8080/shop/user'
+
+# List the items of the user -> none for the moment.
+curl  'http://localhost:8080/shop/user/items'
+
+# Fails with status 400 as it is missing payment parameter
+curl -X POST 'http://localhost:8080/shop/user/items'
+
+# Select Bike B01 and payment option invoice.
+curl -X POST  'http://localhost:8080/shop/user/items?productId=B01'
+
+# Add multiple at one
+curl -X POST  'http://localhost:8080/shop/user/items?productId=B02&productId=C01'
+
+# Fails because we would have now 3 bikes
+curl -X POST  'http://localhost:8080/shop/user/items?productId=B03'
+
+
+# We can remove a product
+curl -X DELETE  'http://localhost:8080/shop/user/items?productId=B01'
+
+# We can remove a product also when not in the list.
+curl -X DELETE 'http://localhost:8080/shop/user/items?productId=T02'
