@@ -1,4 +1,4 @@
-package be.rubus.courses.payara.micro.lab.advanced.shop;
+package be.rubus.courses.payara.micro.lab.shop;
 
 /**
  * POJO when an error message in JSON format needs to be returned.

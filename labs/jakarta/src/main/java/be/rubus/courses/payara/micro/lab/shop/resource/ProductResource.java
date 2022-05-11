@@ -1,4 +1,4 @@
-package be.rubus.courses.payara.micro.lab.advanced.shop.resource;
+package be.rubus.courses.payara.micro.lab.shop.resource;
 
 import javax.ws.rs.Path;
 

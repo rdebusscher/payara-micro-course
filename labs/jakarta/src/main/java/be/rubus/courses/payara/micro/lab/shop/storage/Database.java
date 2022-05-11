@@ -1,8 +1,8 @@
-package be.rubus.courses.payara.micro.lab.advanced.shop.storage;
+package be.rubus.courses.payara.micro.lab.shop.storage;
 
-import be.rubus.courses.payara.micro.lab.advanced.shop.model.Product;
-import be.rubus.courses.payara.micro.lab.advanced.shop.model.User;
-import be.rubus.courses.payara.micro.lab.advanced.shop.model.UserItems;
+import be.rubus.courses.payara.micro.lab.shop.model.Product;
+import be.rubus.courses.payara.micro.lab.shop.model.User;
+import be.rubus.courses.payara.micro.lab.shop.model.UserItems;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;

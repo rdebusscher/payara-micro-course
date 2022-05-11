@@ -1,4 +1,4 @@
-package be.rubus.courses.payara.micro.lab.advanced.shop.model;
+package be.rubus.courses.payara.micro.lab.shop.model;
 
 import java.util.List;
 
