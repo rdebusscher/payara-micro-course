@@ -7,9 +7,7 @@ import be.rubus.courses.payara.micro.lab.advanced.shop.model.UserItems;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 /**
  * Our database is just an in memory storage.
