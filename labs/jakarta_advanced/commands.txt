@@ -1,0 +1,62 @@
+# Build project
+mvn clean package
+
+# Run on Payara Micro (if not using Payara Micro plugin of IDE)
+java  -jar payara-micro.jar <path-to>/jaxrs-lab-advanced/target/shop.war
+
+# Run on Payara Micro with debug(if not using Payara Micro plugin of IDE)
+java '-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:9009' -jar payara-micro.jar <path-to>/jaxrs-lab-advanced/target/shop.war
+
+#Get a list of all Products
+curl 'http://localhost:8080/shop/product'
+
+#Get a list of all Products costing more than 20000.
+curl 'http://localhost:8080/shop/product?minPrice=20000'
+
+#Get a list of Bikes
+curl 'http://localhost:8080/shop/product?category=BIKE'
+
+# List the user, this fails with 401 as no authentication supplied
+curl 'http://localhost:8080/shop/secure/user'
+
+# See CreateCredentials class within the test folder to create Base64 encoded credentials.
+# This still fails as user 'Rudy' is not created
+curl  -H "Authorization: BASIC UnVkeTpteVNlY3JldFBhc3N3b3Jk" 'http://localhost:8080/shop/secure/user'
+
+# Create the user (passwords can just be ignored)
+curl  -X POST 'http://localhost:8080/shop/userAdmin' -H 'Content-Type: application/json' -d '{"userName":"Rudy","name":"Rudy De Busscher", "password":"mySecretPassword"}'
+
+# List the user, we get back the full name
+curl  -H "Authorization: BASIC UnVkeTpteVNlY3JldFBhc3N3b3Jk" 'http://localhost:8080/shop/secure/user'
+
+# List the items of the user -> none for the moment.
+curl  -H "Authorization: BASIC UnVkeTpteVNlY3JldFBhc3N3b3Jk" 'http://localhost:8080/shop/secure/user/items'
+
+# Fails with status 400 as it is missing payment parameter
+curl -X POST -H "Authorization: BASIC UnVkeTpteVNlY3JldFBhc3N3b3Jk" 'http://localhost:8080/shop/secure/user/items'
+
+# Select Bike B01 and payment option invoice.
+curl -X POST -H "Authorization: BASIC UnVkeTpteVNlY3JldFBhc3N3b3Jk" 'http://localhost:8080/shop/secure/user/items?productId=B01&payment=INVOICE'
+
+# More products ith other payment
+curl -X POST -H "Authorization: BASIC UnVkeTpteVNlY3JldFBhc3N3b3Jk" 'http://localhost:8080/shop/secure/user/items?productId=B02&productId=C01&payment=CREDIT_CARD'
+
+# Fails because we would have now 3 bikes
+curl -X POST -H "Authorization: BASIC UnVkeTpteVNlY3JldFBhc3N3b3Jk" 'http://localhost:8080/shop/user/items?productId=B03'
+
+
+# We can remove a product
+curl -X DELETE -H "Authorization: BASIC UnVkeTpteVNlY3JldFBhc3N3b3Jk" 'http://localhost:8080/shop/user/items?productId=B01'
+
+# We can remove a product also when not in the list.
+curl -X DELETE -H "Authorization: BASIC UnVkeTpteVNlY3JldFBhc3N3b3Jk" 'http://localhost:8080/shop/user/items?productId=T02'
+
+
+# Create another user
+curl  -X POST 'http://localhost:8080/shop/userAdmin' -H 'Content-Type: application/json' -d '{"userName":"test","name":"Test User", "password":"something"}'
+
+# Add a product for that user
+curl -X POST -H "Authorization: BASIC dGVzdDpzb21ldGhpbmc=" 'http://localhost:8080/shop/secure/user/items?productId=B03'
+
+# Test if This should only show product B03
+curl  -H "Authorization: BASIC dGVzdDpzb21ldGhpbmc=" 'http://localhost:8080/shop/secure/user/items'
