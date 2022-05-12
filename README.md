@@ -24,6 +24,7 @@ The demos and labs of the course.  Between brackets, attribution to the original
 - MicroProfile Config (2)
 - MicroProfile Config cache configuration with Payara Micro
 - MicroStream in Java SE (directory microstream-basics)
+- MicroStream CDI integration (3)
 
 ## Labs
 
@@ -36,3 +37,4 @@ The demos and labs of the course.  Between brackets, attribution to the original
 
 (1) - https://github.com/architects4j/payara-fastlane-demos/tree/main/cdi
 (2) - https://github.com/rdebusscher/microprofile-tutorial
+(3) - https://github.com/microstream-one/microstream/tree/master/examples/payara-micro
