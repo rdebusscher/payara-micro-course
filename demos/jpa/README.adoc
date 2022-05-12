@@ -1,0 +1,90 @@
+= JPA Demo
+
+A Jakarta EE API specification that provides support to store Java objects in the database, abstracting away the work related to JDBC.
+
+This demo only shows show basic features as the JPA is a large specification.
+
+== Configuration
+
+Following configuration needs to be performed
+
+* Define a datasource to connect to the database. Done by `@DataSourceDefinition`, configured through Configuration values from MicroProfile Config (= feature of Payara Micro)
+* Persistence unit and properties, done by the _persistence.xml_ file.
+* Add the Database JDBC driver to the runtime (using `--addLibs`for Payara Micro )
+* Mapping between Java and database, see classes in _model_ package.
+* Transactional configuration through `@Transactional`
+
+Some specific initialisation for this demo.
+
+- Defined `drop-and-create` as action in _persistence.xml_ so that database tables are recreated during application startup. (This is bad for a production application!)
+- filled the tables with some test data, SQL script within _defaultdata.sql_ that is referenced in the _persistence.xml_ properties.
+
+== Basic Reading from database
+
+See `CompanyService` class.
+
+- Using the `EntityManager` to define a query using the JQL language (JPA Query language. resembles SQL but is using Java names and specific concepts)
+- Named and typed parameters within Query (No SQL injection security vulnerability)
+
+Build the project
+
+[source,Shell]
+----
+mvn clean package
+
+----
+
+Execute on the runtime
+
+[source,Shell]
+----
+java -jar payara-micro.jar --addlibs <path-to>/mysql-connector-java-5.1.39.jar --systemproperties <path-to>/microprofile.properties <path-to>/jpa.war
+
+----
+
+The _microprofile.properties_ file actually is used as JVM system properties but are read through the MicroProfile Config functionality.
+
+Testing 
+
+[source,Shell]
+----
+curl 'curl localhost:8080/jpa/rest/company/1'
+
+----
+
+== Master Detail relations
+
+See  `Employee` and `EmployeeService` class
+
+- `@ManyToOne`  to determine the master detail relationship
+- JOIN FETCH for optimal retrieval from the database.
+
+
+Testing
+
+[source,Shell]
+----
+curl 'curl localhost:8080/jpa/rest/employee'
+----
+
+
+== Converter
+
+See `JPAColorConverter` class.
+
+- Define a converter for Java Types that are not known by JPA to convert to and from the database.
+
+Testing, see Updating database.
+
+== Update data
+
+See `EmployeeService` class
+
+- Use `merge()` or `persist()` to update or create records.
+
+Testing
+
+[source,Shell]
+----
+curl -X POST localhost:8080/jpa/rest/employee/100 -H 'Content-Type: application/json' -d '{"company":{"id":2},"firstName":"Leslie3","gender":"FEMALE","hireDate":"2018-08-31T22:00:00Z[UTC]","id":100,"lastName":"Andrews", "favoriteColor": "200:50:50"}'
+----

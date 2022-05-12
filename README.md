@@ -20,8 +20,9 @@ The demos and labs of the course.  Between brackets, attribution to the original
 
 - CDI (1)
 - JAX-RS
+- JPA
 - MicroProfile Config (2)
-- Microprofile Config cache configuration with Payara Micro
+- MicroProfile Config cache configuration with Payara Micro
 
 ## Labs
 
