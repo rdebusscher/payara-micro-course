@@ -25,6 +25,7 @@ The demos and labs of the course.  Between brackets, attribution to the original
 - MicroProfile Config cache configuration with Payara Micro
 - MicroStream in Java SE (directory microstream-basics)
 - MicroStream CDI integration (3)
+- Integration testing (Testcontainers)
 
 ## Labs
 
