@@ -23,6 +23,7 @@ The demos and labs of the course.  Between brackets, attribution to the original
 - JPA
 - MicroProfile Config (2)
 - MicroProfile Config cache configuration with Payara Micro
+- MicroProfile Rest Client (2)
 - MicroStream in Java SE (directory microstream-basics)
 - MicroStream CDI integration (3)
 - Integration testing (Testcontainers)

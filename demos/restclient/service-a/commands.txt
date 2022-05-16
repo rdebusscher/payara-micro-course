@@ -1,0 +1,12 @@
+mvn clean package
+
+
+java -jar payara-micro.jar  /Users/rubus/education/payara-micro-course/demos/restclient/service-a/target/service-a.war
+
+# Test rest client
+curl localhost:8080/service-a/data/client/test/MicroStream
+
+
+# Test async call
+
+curl localhost:8080/service-a/data/client-async
