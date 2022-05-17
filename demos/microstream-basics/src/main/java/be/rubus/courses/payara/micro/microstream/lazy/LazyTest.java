@@ -38,7 +38,9 @@ public class LazyTest {
 
         root.getLazy().get().addAll(createData());
 
-        storageManager.storeRoot();
+        storageManager.storeRoot();  // For the String update
+        storageManager.store(root.getLazy().get());  // For the updated data in the Lazy List
+
         System.out.printf("Size %s %n", root.getLazy().get().size());
         System.gc();
         System.out.printf("Available Heap at end of creating test data %s %n", Runtime.getRuntime().freeMemory());
