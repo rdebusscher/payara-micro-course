@@ -132,3 +132,16 @@ curl  'localhost:8080/rest/api/client/Rudy'
 ```
 
 See `E8ClientResource`.
+
+## Asynchronous creating the response
+
+Requires Jakarta Concurrency (Full Profile, included within Payara Micro). The response is generated in another thread so that you might avoid having some Threads from the runtime hat are blocked.
+Requires carefully programming of reactive principles.
+
+Testing
+
+```Shell
+curl 'localhost:8080/rest/api/async/longRunning'
+```
+
+See `GZipWriterInterceptor` and `GZipContainerResponseFilter`.
