@@ -22,26 +22,22 @@ import java.util.List;
 
 
 @Testcontainers
-public class ProductControllerIT {
+public class ProductControllerDebugIT {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(ProductControllerIT.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ProductControllerDebugIT.class);
 
     // A link to the Web application for TestContainers so that it can be added to Payara Micro Image.
     private static final MountableFile WAR_FILE = MountableFile.forHostPath(Paths.get("target/myservice.war").toAbsolutePath(), 0777);
 
     @Container
-    public static GenericContainer container = new GenericContainer(DockerImageName.parse("payara/micro:5.2022.2-jdk11"))
-            .withExposedPorts(8080)
-            .withCopyFileToContainer(WAR_FILE, "/opt/payara/deployments/app.war")
-            .waitingFor(Wait.forHttp("/health"))  // Health point of Payara Micro based on MicroProfile Health
-            .withCommand("--deploy /opt/payara/deployments/app.war --noCluster --contextRoot /");  // Deploy app, no clustering = faster and define context root.
+    public static PayaraMicroContainer payaraMicro = new PayaraMicroContainer(WAR_FILE, true);
 
     public static ProductService service;
 
     @BeforeEach
     public void setup() {
         // Since contextroot is / and Application mapping also, our application is accessible on host directly
-        URI baseURI = URI.create(String.format("http://localhost:%s", container.getMappedPort(8080)));
+        URI baseURI = URI.create(String.format("http://localhost:%s", payaraMicro.getMappedPort(8080)));
         //testContainers maps the standard port to some random port, so request it from Test Containers.
         service = RestClientBuilder.newBuilder().  // From MicroProfile Rest Client
                 register(JacksonJsonProvider.class).  // Support JSON-B
@@ -49,7 +45,7 @@ public class ProductControllerIT {
                 build(ProductService.class);  // Create proxy based on the interface and information of the endpoints.
 
         Slf4jLogConsumer logConsumer = new Slf4jLogConsumer(LOGGER);
-        container.followOutput(logConsumer);  // Show log of container in output.
+        payaraMicro.followOutput(logConsumer);  // Show log of container in output.
 
     }
 
