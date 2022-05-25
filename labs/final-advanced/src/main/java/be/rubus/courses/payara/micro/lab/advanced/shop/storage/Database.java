@@ -1,54 +1,48 @@
-package be.rubus.courses.payara.micro.lab.shop.storage;
+package be.rubus.courses.payara.micro.lab.advanced.shop.storage;
 
-import be.rubus.courses.payara.micro.lab.shop.model.Product;
-import be.rubus.courses.payara.micro.lab.shop.model.User;
-import be.rubus.courses.payara.micro.lab.shop.model.UserItems;
-import one.microstream.storage.embedded.types.EmbeddedStorage;
+import be.rubus.courses.payara.micro.lab.advanced.shop.model.Product;
+import be.rubus.courses.payara.micro.lab.advanced.shop.model.User;
+import be.rubus.courses.payara.micro.lab.advanced.shop.model.UserItems;
+import one.microstream.integrations.cdi.types.Store;
+import one.microstream.integrations.cdi.types.StoreType;
 import one.microstream.storage.types.StorageManager;
-import org.eclipse.microprofile.config.inject.ConfigProperty;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
- * Our database is just an in memory storage.
+ * Our database is operating on the Object Graph that is maintained by MicroStream.
  */
 @ApplicationScoped
 public class Database {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(Database.class);
+    private static final Logger LOGGER = Logger.getLogger(Database.class.getName());
 
     @Inject
-    @ConfigProperty(name = "database.location")
-    private String databaseLocation;
-
-    private List<User> users;
-
     private StorageRoot root;
-
-    private StorageManager storageManager;
 
     @Inject
     private DataInitializer initializer;
 
+    // The created MicroStream StorageManager is now also injectable.
+    @Inject
+    private StorageManager storageManager;
+
     @PostConstruct
     public void init() {
-        root = new StorageRoot();
-        storageManager = EmbeddedStorage.start(root, Paths.get(databaseLocation));
+        LOGGER.info("**** Executing Init on Database");
         if (root.isEmpty()) {
             LOGGER.info("**** Initialize database and store products");
             root.getProducts().addAll(initializer.createProductList());
+            // We can't have an interceptor on PostConstruct. So we do it ourself
             storageManager.store(root.getProducts());
         }
-        users = new ArrayList<>();
-        users.add(initializer.createUser());
+
     }
 
     public List<Product> getProducts() {
@@ -58,7 +52,13 @@ public class Database {
 
     public List<User> getUsers() {
         // Wrapped in a new List so that we cannot modify the database contents.
-        return new ArrayList<>(users);
+        return new ArrayList<>(root.getUsers());
+    }
+
+    @Store(fields = "users")
+    public void addUser(User user) {
+        // We have just checked that user does not exist already. But in production system it should be done again.
+        root.getUsers().add(user);
     }
 
     public List<UserItems> getUserItems() {
@@ -66,12 +66,12 @@ public class Database {
         return new ArrayList<>(root.getUserItems());
     }
 
+    @Store(fields = "userItems", value = StoreType.EAGER)
+    // We need eager as we do also make changes to items of the list which are not picked up
+    // by the Lazy evaluator
     public void addProducts(User user, Collection<Product> products) {
         UserItems userItem = ensureUserItem(user);
         userItem.getProducts().addAll(products);
-        LOGGER.info("**** Updating the userItem");
-        storageManager.store(userItem.getProducts());  // When we add products to existing UserItem
-        // the parent of the change is the UserItem.ProductList
     }
 
     private UserItems ensureUserItem(User user) {
@@ -86,22 +86,16 @@ public class Database {
             userItem.setProducts(new ArrayList<>());
             userItem.setUser(user);
             root.getUserItems().add(userItem);
-            // Make sure we store the changed list to disk
-            LOGGER.info("**** Storing the newly added userItem");
-            storageManager.store(root.getUserItems());
-
         }
         return userItem;
     }
 
+    @Store(fields = "userItems", value = StoreType.EAGER)
+    // We need eager as we do also make changes to items of the list which are not picked up
+    // by the Lazy evaluator
     public void removeProducts(User user, Collection<Product> products) {
         UserItems userItem = ensureUserItem(user);
         userItem.getProducts().removeAll(products);
-
-        LOGGER.info("**** Updating the userItem");
-        storageManager.store(userItem.getProducts());  // When we delete products from existing UserItem
-        // the parent of the change is the UserItem.ProductList itself.
-
     }
 
 }

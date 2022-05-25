@@ -2,7 +2,7 @@
 mvn clean package
 
 # Run on Payara Micro (if not using Payara Micro plugin of IDE) Don't forget to define the database location.
-java  -jar payara-micro.jar -Ddatabase.location=/Users/rubus/training/shop <path-to>/final/target/shop.war
+java -Ddatabase.location=/Users/rubus/training/shop -jar payara-micro.jar <path-to>/final/target/shop.war
 
 # Run on Payara Micro with debug(if not using Payara Micro plugin of IDE)
 java '-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:9009' -Ddatabase.location=/Users/rubus/training/shop -jar payara-micro.jar <path-to>/final/target/shop.war
