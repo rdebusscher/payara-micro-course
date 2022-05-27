@@ -4,6 +4,7 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Any;
 import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -32,24 +33,24 @@ public class Orchestra {
     private Instance<Instrument> instruments;
 
     public void string() {
-        LOGGER.info("The string's sound: " + this.string.sound());
+        LOGGER.log(Level.INFO, "The string sound: {0}", string.sound());
     }
 
     public void percussion() {
-        LOGGER.info("The percussion's sound: " + this.percussion.sound());
+        LOGGER.log(Level.INFO, "The percussion sound: {0}", percussion.sound());
     }
 
     public void keyboard() {
-        LOGGER.info("The keyboard's sound: " + this.keyboard.sound());
+        LOGGER.log(Level.INFO, "The keyboard's sound: {0}" + keyboard.sound());
     }
 
 
     public void solo() {
-        LOGGER.info("The solo's sound: " + this.solo.sound());
+        LOGGER.log(Level.INFO, "The solo sound: {0}", solo.sound());
     }
 
     public void allSound() {
         String sounds = this.instruments.stream().map(Instrument::sound).collect(Collectors.joining(", "));
-        LOGGER.info("All instruments sounds are: " + sounds);
+        LOGGER.log(Level.INFO, "All instruments sounds are: {0}", sounds);
     }
 }

@@ -23,6 +23,7 @@ public class E8ClientResource {
     public void init() {
         // See also for MicroProfile Client for a high level solution.
         client = ClientBuilder.newClient();
+        // Creation of Client is expensive but Thread safe, so do it once.
     }
 
     @GET

@@ -5,6 +5,7 @@ We will make a small shop kind of application where we can associate products wi
 - Adding and removing products for the user requires 'authentication'.
 - Some business rules apply, like at maximum 2 bikes, and 1 for other product categories.
 - 2 different payment options.
+- Authentication of JAX-RS endpoints
 
 Within the `commands.txt` file, the Curl commands are listed that should work against your implementation (or indicate if they should fail.)
 
@@ -22,4 +23,3 @@ Things that are expected to be used in this lab.
 - Injection of CDI beans.
 - Use of `ContainerRequestFilter`
 - Use of `Instance<T>`
-

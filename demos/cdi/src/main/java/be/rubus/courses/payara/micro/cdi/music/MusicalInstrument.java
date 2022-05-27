@@ -15,5 +15,6 @@ import javax.inject.Qualifier;
 @Retention(RUNTIME)
 @Target({TYPE, METHOD, FIELD, PARAMETER})
 public @interface MusicalInstrument {
-    InstrumentType value();
+    InstrumentType value();  // We can qualify beans based on the value of InstrumentType.
+    // We use it to distinguish between the different instruments.
 }

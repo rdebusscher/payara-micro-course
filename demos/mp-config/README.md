@@ -9,7 +9,7 @@ The specification builds on top of the Jakarta CDI specification.
 Basic usage of retrieving parameters, declarative and programmatic.
 
 - Usage of `@ConfigProperty` for declarative Injection
-- Usage of `ConfigProvider`for programmatic access.
+- Usage of `ConfigProvider` for programmatic access
 - Defaults from _microprofile-config.properties_
 
 Build the project
@@ -86,7 +86,7 @@ curl 'localhost:8080/app/api/config/converter'
 
 ## E4Resource
 
-The specification defines that values for the configuration is
+The specification defines that values for the configuration are
 
 - Defined at deployment time for required values
 - The moment optional values are requested for the first time

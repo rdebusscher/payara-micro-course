@@ -26,14 +26,16 @@ The demos and labs of the course.  Between brackets, attribution to the original
 - MicroProfile Rest Client (2)
 - MicroStream in Java SE (directory microstream-basics)
 - MicroStream CDI integration (3)
+- JPA
 - Integration testing (Testcontainers)
 
 ## Labs
 
 
-- Jakarta (JX-RS, CDI, Bean Validation)
-- Jakarta Advanced (JX-RS, CDI, Bean Validation)
-
+- Jakarta (JAX-RS, CDI, Bean Validation)
+- Jakarta Advanced (JAX-RS, CDI, Bean Validation)
+- Final (Jakarta lab + MicroStream)
+- Final Advanced (Jakarta Advanced lab + MicroStream CDI integration)
 
 ## References
 
