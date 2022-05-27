@@ -13,7 +13,7 @@ curl 'http://localhost:8080/shop/product'
 # List the items of the user -> none for the moment.
 curl  'http://localhost:8080/shop/user/items'
 
-# Select Bike B01 and payment option invoice.
+# Select Bike B01 for user.
 curl -X POST  'http://localhost:8080/shop/user/items?productId=B01'
 
 # Stop and start Payara Micro Process
@@ -29,4 +29,10 @@ curl -X POST  'http://localhost:8080/shop/user/items?productId=B02&productId=C01
 curl -X DELETE  'http://localhost:8080/shop/user/items?productId=B01'
 
 # List the items of the user -> 2 for the moment
+curl  'http://localhost:8080/shop/user/items'
+
+# Stop and start Payara Micro Process
+# We will test out if we actually have stored the data on disk.
+
+# List the items of the user -> 1 for the moment from previous run.
 curl  'http://localhost:8080/shop/user/items'

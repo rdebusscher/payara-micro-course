@@ -1,6 +1,6 @@
 # Final Lab (Advanced)
 
-We continue from the Jakarta advanced Lab and add MicroStream functionality on top of the previous code base.
+We continue from the Jakarta advanced Lab and add MicroStream CDI functionality on top of the previous code base.
 
 We will rework the Database object so that we have a Storage root containing the list of `Product`'s, `User`s, and `UserItem`'s.  
 

@@ -2,10 +2,10 @@
 mvn clean package
 
 # Run on Payara Micro (if not using Payara Micro plugin of IDE)
-java  -jar payara-micro.jar <path-to>/jaxrs-lab/target/shop.war
+java  -jar payara-micro.jar <path-to>/labs/jakarta/target/shop.war
 
 # Run on Payara Micro with debug(if not using Payara Micro plugin of IDE)
-java '-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:9009' -jar payara-micro.jar <path-to>/jaxrs-lab/target/shop.war
+java '-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:9009' -jar payara-micro.jar <path-to>/labs/jakarta/target/shop.war
 
 #Get a list of all Products
 curl 'http://localhost:8080/shop/product'
@@ -22,16 +22,16 @@ curl 'http://localhost:8080/shop/user'
 # List the items of the user -> none for the moment.
 curl  'http://localhost:8080/shop/user/items'
 
-# Fails with status 400 as it is missing payment parameter
+# Fails with status 400 as it is missing product parameter
 curl -X POST 'http://localhost:8080/shop/user/items'
 
-# Select Bike B01 and payment option invoice.
+# Select Bike B01.
 curl -X POST  'http://localhost:8080/shop/user/items?productId=B01'
 
-# Add multiple at one
+# Add multiple at once
 curl -X POST  'http://localhost:8080/shop/user/items?productId=B02&productId=C01'
 
-# Fails because we would have now 3 bikes
+# Fails because we would have 3 bikes
 curl -X POST  'http://localhost:8080/shop/user/items?productId=B03'
 
 
