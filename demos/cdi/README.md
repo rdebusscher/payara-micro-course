@@ -14,7 +14,7 @@ This demo runs on Java SE. Within runtimes, the container must not be started bu
 
 ## App1
 
-- Select programmatically a _bean_ from container.
+- Select programmatically a _bean_ from a container.
 - Initialization of the instance
 - Notion of Scope
 - Criteria to retrieve beans from Container (Class, interface, ...)
@@ -27,7 +27,7 @@ This demo runs on Java SE. Within runtimes, the container must not be started bu
 
 ## App3
 
-- Producer methods of CDI beans (for Java built-in, initialization, and customization)
+- Producer method of CDI beans (for Java built-in, initialization, and customization)
 
 ## App4
 

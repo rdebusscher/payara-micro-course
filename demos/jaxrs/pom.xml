@@ -26,6 +26,15 @@
             <scope>provided</scope>
         </dependency>
 
+        <!-- concurrency is part of Full profile only but Payara MicroStream supports
+        this as it is useful in many web apps, like asynchronous JAX-RS endpoints. -->
+        <dependency>
+            <groupId>jakarta.enterprise.concurrent</groupId>
+            <artifactId>jakarta.enterprise.concurrent-api</artifactId>
+            <version>1.1.2</version>
+            <scope>provided</scope>
+        </dependency>
+
     </dependencies>
 
     <build>

@@ -1,0 +1,39 @@
+# Run MySQL database as a Docker container
+docker run --name mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -e MYSQL_USER=rubus -e MYSQL_PASSWORD=rubus -e MYSQL_DATABASE=rubus -d -p 33060:33060 -p 3306:3306  mysql:5.7.33
+
+# Launch application
+java -jar payara-micro.jar --addlibs /Users/rubus/resources/mysql-connector-java-5.1.39.jar --systemproperties /Users/rubus/education/payara-micro-course/demos/jpa/microprofile.properties /Users/rubus/education/payara-micro-course/demos/jpa/target/jpa.war
+
+# Launch with Debug
+java '-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:9009' -jar payara-micro.jar --addlibs /Users/rubus/resources/mysql-connector-java-5.1.39.jar --systemproperties /Users/rubus/education/payara-micro-course/demos/jpa/microprofile.properties /Users/rubus/education/payara-micro-course/demos/jpa/target/jpa.war
+
+
+# Read with parameter
+curl localhost:8080/jpa/rest/company/1
+
+# Master detail relation
+curl localhost:8080/jpa/rest/employee
+
+# Insert record
+curl -X POST http://localhost:8080/jpa/rest/company -H 'Content-Type: application/json' -d '{"name":"superCompany"}'
+
+# Check if record is added
+curl localhost:8080/jpa/rest/company
+
+# Reading in combination with Master detail
+curl localhost:8080/jpa/rest/employee/company/2
+
+# Read single employee (to check current values)
+curl localhost:8080/jpa/rest/employee/100
+
+# Update employee. You see that company name is ignored
+curl -X POST localhost:8080/jpa/rest/employee/100 -H 'Content-Type: application/json' -d '{"company":{"id":2,"name":"blablabla"},"firstName":"Leslie2","gender":"FEMALE","hireDate":"2018-08-31T22:00:00Z[UTC]","id":100,"lastName":"Andrews"}'
+
+# Update Employee, minimal
+curl -X POST localhost:8080/jpa/rest/employee/100 -H 'Content-Type: application/json' -d '{"company":{"id":2},"firstName":"Leslie3","gender":"FEMALE","hireDate":"2018-08-31T22:00:00Z[UTC]","id":100,"lastName":"Andrews"}'
+
+# Update Employee, we need to retrieve current company first before it works, see EmployeeService#updateEmployee
+ curl -X POST localhost:8080/jpa/rest/employee/100 -H 'Content-Type: application/json' -d '{"firstName":"Leslie3","gender":"FEMALE","hireDate":"2018-08-31T22:00:00Z[UTC]","id":100,"lastName":"Andrews"}'
+
+# Update Employee, making use of the Converters.
+curl -X POST localhost:8080/jpa/rest/employee/100 -H 'Content-Type: application/json' -d '{"company":{"id":2},"firstName":"Leslie3","gender":"FEMALE","hireDate":"2018-08-31T22:00:00Z[UTC]","id":100,"lastName":"Andrews", "favoriteColor": "200:50:50"}'

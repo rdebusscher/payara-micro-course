@@ -2,9 +2,9 @@ package be.rubus.courses.payara.micro.cdi.producer;
 
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.context.Dependent;
 import javax.enterprise.inject.Produces;
 import javax.enterprise.inject.spi.InjectionPoint;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @ApplicationScoped
@@ -16,7 +16,7 @@ class LoggerProducer {
     Logger getLog(InjectionPoint ip) {
         // Inspect the Injection point to make
         String declaringClass = ip.getMember().getDeclaringClass().getName();
-        LOGGER.info("Creating instance log for class " + declaringClass);
+        LOGGER.log(Level.INFO, "Creating instance log for class {0}", declaringClass);
         return Logger.getLogger(declaringClass);
     }
 }
