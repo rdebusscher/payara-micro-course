@@ -20,8 +20,8 @@ curl -X POST http://localhost:8080/jpa/rest/company -H 'Content-Type: applicatio
 # Check if record is added
 curl localhost:8080/jpa/rest/company
 
-# Reading in combin ation with Master detail
-curl localhost:8080/jpa/rest/employee/company/1
+# Reading in combination with Master detail
+curl localhost:8080/jpa/rest/employee/company/2
 
 # Read single employee (to check current values)
 curl localhost:8080/jpa/rest/employee/100

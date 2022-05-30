@@ -1,5 +1,8 @@
 package be.rubus.courses.payara.micro.microstream.lazy;
 
+import one.microstream.memory.MemoryStatistics;
+import one.microstream.memory.MemoryStatisticsProvider;
+import one.microstream.memory.XMemory;
 import one.microstream.storage.embedded.types.EmbeddedStorage;
 import one.microstream.storage.types.StorageManager;
 
@@ -13,17 +16,18 @@ public class LazyTest {
         // Application-specific root instance
         LazyRoot root = new LazyRoot();
 
+                System.out.printf("Available Heap (Before MicroStream started) %,d %n", Runtime.getRuntime().freeMemory());
         // Initialize a storage manager ("the database") with the given directory and defaults for everything else.
         try (StorageManager storageManager = EmbeddedStorage.start(root, Paths.get("target/lazyData"))) {
 
             if (root.getAlwaysAvailable() == null) {
                 loadTestData(storageManager);
             } else {
-                System.out.printf("Available Heap %s %n", Runtime.getRuntime().freeMemory());
+                System.out.printf("Available Heap (With MicroStream started) %,d %n", Runtime.getRuntime().freeMemory());
                 System.out.printf("Is Lazy data loaded ? %s %n", root.getLazy().isLoaded());
-                System.out.printf("Available Heap %s %n", Runtime.getRuntime().freeMemory());
+                System.out.printf("Available Heap (isLoaded does not trigger the load) %,d %n", Runtime.getRuntime().freeMemory());
                 System.out.printf("Size %s %n", root.getLazy().get().size());
-                System.out.printf("Available Heap %s %n", Runtime.getRuntime().freeMemory());
+                System.out.printf("Available Heap (with Lazy data loaded) %,d %n", Runtime.getRuntime().freeMemory());
             }
 
         }
@@ -31,7 +35,7 @@ public class LazyTest {
     }
 
     private static void loadTestData(StorageManager storageManager) {
-        System.out.printf("Available Heap at start of creating test data %s %n", Runtime.getRuntime().freeMemory());
+        System.out.printf("Available Heap at start of creating test data %,d %n", Runtime.getRuntime().freeMemory());
 
         LazyRoot root = (LazyRoot) storageManager.root();
         root.setAlwaysAvailable("Lazy data are created");
@@ -43,13 +47,14 @@ public class LazyTest {
 
         System.out.printf("Size %s %n", root.getLazy().get().size());
         System.gc();
-        System.out.printf("Available Heap at end of creating test data %s %n", Runtime.getRuntime().freeMemory());
+        System.out.printf("Available Heap at end of creating test data %,d %n", Runtime.getRuntime().freeMemory());
 
         System.gc();
         root.getLazy().clear();
 
-        System.gc();
-        System.out.printf("Available Heap when Lazy is cleared (object no longer in memory) %s %n", Runtime.getRuntime().freeMemory());
+        System.gc();  // .gc is a hint, does not mean it does clean up garbage.
+        System.out.printf("Available Heap when Lazy is cleared (object no longer in memory) %,d %n", Runtime.getRuntime().freeMemory());
+        System.out.println(XMemory.memoryAccessor().createHeapMemoryStatistics().used());
     }
 
     private static List<String> createData() {

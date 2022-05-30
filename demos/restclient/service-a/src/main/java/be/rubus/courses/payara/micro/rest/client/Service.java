@@ -10,7 +10,7 @@ import javax.ws.rs.PathParam;
 
 @RegisterRestClient
 @ApplicationScoped
-@RegisterProvider(DebugClientRequestFilter.class)
+@RegisterProvider(DebugClientRequestFilter.class)  // Adds a request filter to outgoing calls.
 public interface Service {
 
     @GET

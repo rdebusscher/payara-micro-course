@@ -17,18 +17,22 @@ package be.rubus.courses.payara.micro.rest.client;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import java.util.logging.Logger;
 
 @Path("/client/heavy")
 public class HeavyCalculationController {
 
+    private static final Logger LOGGER = Logger.getLogger(HeavyCalculationController.class.getName());
+
     @GET
     public String calculate() {
+        LOGGER.info("Received request for Heavy Service");
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();  // FIXME Demo code
         }
-        System.out.println("Returning result from Heavy service");
+        LOGGER.info("Returning result from Heavy service");
         return "The result after some substantial amount of calculation";
     }
 

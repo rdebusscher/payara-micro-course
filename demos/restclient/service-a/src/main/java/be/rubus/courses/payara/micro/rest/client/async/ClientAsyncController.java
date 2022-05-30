@@ -23,6 +23,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import java.util.concurrent.CompletionStage;
 import java.util.concurrent.ExecutionException;
+import java.util.logging.Logger;
 
 /**
  *
@@ -31,28 +32,32 @@ import java.util.concurrent.ExecutionException;
 @ApplicationScoped
 public class ClientAsyncController {
 
+    private static final Logger LOGGER = Logger.getLogger(ClientAsyncController.class.getName());
+
     @Inject
     @RestClient
     private HeavyService heavyService;
 
     @GET
     public String useAsync() {
+        LOGGER.info("Call remote service");
         CompletionStage<String> stage = heavyService.calculate();
-        System.out.println("Continue in caller");
+
+        LOGGER.info("Continue in caller");
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();  // FIXME Demo code
         }
 
-        System.out.println("Ready for retrieving result");
+        LOGGER.info("Ready for retrieving result");
         String result;
         try {
             result = stage.toCompletableFuture().get();
         } catch (InterruptedException | ExecutionException e) {
             result = e.getMessage();
         }
-        System.out.println("received result");
+        LOGGER.info("received result");
         return result;
     }
 }

@@ -51,7 +51,7 @@ java -jar payara-micro.jar --port 8180 <path-to-war>/service-b.war
 curl localhost:8080/service-a/data/client/test/MicroStream
 ```
 
-See `be.rubus.courses.payara.micro.rest.client.ClientController`.
+See `be.rubus.courses.payara.micro.rest.client.ClientController` and `be.rubus.courses.payara.micro.rest.client.Service` 
 
 The asynchronous call
 

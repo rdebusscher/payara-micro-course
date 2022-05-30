@@ -5,7 +5,6 @@ We will make a small shop kind of application where we can associate products wi
 - Adding and removing products for the user requires 'authentication'.
 - Some business rules apply, like at maximum 2 bikes, and 1 for other product categories.
 - 2 different payment options.
-- Authentication of JAX-RS endpoints
 
 Within the `commands.txt` file, the Curl commands are listed that should work against your implementation (or indicate if they should fail.)
 
@@ -16,6 +15,7 @@ The `solution` branch contains a possible solution for this lab.
 
 Things that are expected to be used in this lab.
 
+- Define JAX-RS resource classes
 - Define JAX-RS resource classes
 - Using different HTTP methods (GET, POST, DELETE)
 - Using `List<String>` for a list of Parameters
