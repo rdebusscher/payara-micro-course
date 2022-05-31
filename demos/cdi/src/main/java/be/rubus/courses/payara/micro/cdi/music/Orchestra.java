@@ -41,7 +41,7 @@ public class Orchestra {
     }
 
     public void keyboard() {
-        LOGGER.log(Level.INFO, "The keyboard's sound: {0}" + keyboard.sound());
+        LOGGER.log(Level.INFO, "The keyboard''s sound: {0}", keyboard.sound());
     }
 
 
