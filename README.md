@@ -10,7 +10,7 @@ This work is licensed under a
 [cc-by-sa-image]: https://licensebuttons.net/l/by-sa/4.0/88x31.png
 [cc-by-sa-shield]: https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg
 
-Sponsored by https://microstream.one/[MicroStream]
+Sponsored by [MicroStream](https://microstream.one/)
 
 # Cloud Native Microservices with Payara Micro
 
@@ -36,6 +36,14 @@ The demos and labs of the course.  Between brackets, attribution to the original
 - Jakarta Advanced (JAX-RS, CDI, Bean Validation)
 - Final (Jakarta lab + MicroStream)
 - Final Advanced (Jakarta Advanced lab + MicroStream CDI integration)
+
+## Extra
+
+- Some additional info about creating Docker images
+
+## Slides
+
+Slides are available within the _Payara-Micro-Workshop.pdf_ file.
 
 ## References
 

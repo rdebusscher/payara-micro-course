@@ -1,0 +1,11 @@
+# Package the project
+
+mvn clean package
+
+# Run the Fabric8 plugin
+mvn docker:build
+
+# Run the images
+docker run -p 8080:8080 training2:0.1
+
+docker run -p 8080:8080 training2bis:0.1

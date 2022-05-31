@@ -1,0 +1,13 @@
+# Package the project
+
+
+# run with official docker image.
+
+docker run -p 8080:8080  -v ${PWD}/target:/opt/payara/deployments payara/micro:5.2022.2-jdk11 --deploy /opt/payara/deployments/demo.war
+
+
+# Or with a custom image
+
+docker build -t training:0.1 .
+
+docker run -p 8080:8080 training:0.1

@@ -1,0 +1,9 @@
+# Package the project
+
+mvn clean package
+
+mvn k8s:build
+
+mvn k8s:resource
+
+docker run -p 8080:8080 training2:0.1
