@@ -62,7 +62,7 @@
 
                     <resources> can't be combined with <images>
                     You can't specify an image name for the K8S Deployment
-                    Output is within the target/class/META-INF directory, so part of your deployed application.
+                    Output is within the target/classes/META-INF directory, so part of your deployed application.
                      ...
                     -->
                     <resources>

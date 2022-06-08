@@ -67,6 +67,7 @@
                     </images>
                     <verbose>true</verbose>
                 </configuration>
+
             </plugin>
 
         </plugins>

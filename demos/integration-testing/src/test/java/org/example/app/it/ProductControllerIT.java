@@ -36,6 +36,7 @@ public class ProductControllerIT {
             .waitingFor(Wait.forHttp("/health"))  // Health point of Payara Micro based on MicroProfile Health
             .withCommand("--deploy /opt/payara/deployments/app.war --noCluster --contextRoot /");  // Deploy app, no clustering = faster and define context root.
 
+
     public static ProductService service;
 
     @BeforeEach
