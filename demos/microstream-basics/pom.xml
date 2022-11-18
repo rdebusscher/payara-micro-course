@@ -13,7 +13,7 @@
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
 
-        <microstream.version>07.00.00-MS-GA</microstream.version>
+        <microstream.version>07.01.00-MS-GA</microstream.version>
 
     </properties>
 
@@ -21,6 +21,11 @@
         <dependency>
             <groupId>one.microstream</groupId>
             <artifactId>microstream-storage-embedded</artifactId>
+            <version>${microstream.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>one.microstream</groupId>
+            <artifactId>microstream-storage-embedded-configuration</artifactId>
             <version>${microstream.version}</version>
         </dependency>
         <dependency>

@@ -7,6 +7,7 @@ import javax.ws.rs.core.MediaType;
 
 @Path("/cdi")
 @Singleton  // Only 1 instance, optimal memory pressure (when not 'injecting' URL parameters in fields)
+// @ApplicationScoped is very similar.
 public class E5IntegrationResource {
 
     @Inject

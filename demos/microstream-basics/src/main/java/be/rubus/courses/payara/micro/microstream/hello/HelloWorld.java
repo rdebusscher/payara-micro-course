@@ -10,7 +10,7 @@ public class HelloWorld {
 
     public static void main(String[] args) {
         // Application-specific root instance
-        DataRoot root = new DataRoot();
+        DataRoot root = new DataRoot("");
 
         // Initialize a storage manager ("the database") with the given directory and defaults for everything else.
         try (EmbeddedStorageManager storageManager = EmbeddedStorage.start(root, Paths.get("target/data"))) {
@@ -19,11 +19,11 @@ public class HelloWorld {
             System.out.printf("database content at load : %s %n", root);
 
             // Set content data to the root element, including the time to visualize changes on the next execution.
-            root.setContent("Hello World! @ " + new Date());
+            root.setValue("Hello World! @ " + new Date());
 
 
             // Store the modified root and its content.
-            storageManager.storeRoot();
+            storageManager.store(root);
 
             System.out.printf("Memory content at shutdown : %s %n", root);
         }

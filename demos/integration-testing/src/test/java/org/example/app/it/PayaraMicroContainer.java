@@ -21,7 +21,7 @@ public class PayaraMicroContainer extends GenericContainer<PayaraMicroContainer>
     }
 
     public PayaraMicroContainer(MountableFile warFile, boolean debug) {
-        super(DockerImageName.parse("payara/micro:5.2022.2-jdk11"));
+        super(DockerImageName.parse("payara/micro:5.2022.4-jdk11"));
         withExposedPorts(8080);
 
         withCopyFileToContainer(warFile, "/opt/payara/deployments/app.war");

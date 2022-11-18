@@ -1,29 +1,36 @@
 package be.rubus.courses.payara.micro.microstream.cdi.model;
 
 import one.microstream.integrations.cdi.types.Storage;
+import one.microstream.persistence.types.Persister;
 
+import javax.inject.Inject;
 import java.util.*;
 
 @Storage
 public class Inventory {
+
+    @Inject
+    private transient Persister persister;
+
     private final Set<Product> products = new HashSet<>();
 
     public void add(Product product) {
         Objects.requireNonNull(product, "product is required");
-        this.products.add(product);
+        products.add(product);
+        persister.store(products);
     }
 
     public Set<Product> getProducts() {
-        return Collections.unmodifiableSet(this.products);
+        return Collections.unmodifiableSet(products);
     }
 
     public Optional<Product> findById(long id) {
-        return this.products.stream().filter(p -> p.getId() == id).findAny();
+        return products.stream().filter(p -> p.getId() == id).findAny();
     }
 
     public void deleteById(final long id) {
-        this.products.removeIf(p -> p.getId() == id);
-
+        products.removeIf(p -> p.getId() == id);
+        persister.store(products);
     }
 
     @Override

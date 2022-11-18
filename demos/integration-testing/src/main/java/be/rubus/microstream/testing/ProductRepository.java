@@ -2,7 +2,6 @@ package be.rubus.microstream.testing;
 
 import be.rubus.microstream.testing.model.Inventory;
 import be.rubus.microstream.testing.model.Product;
-import one.microstream.integrations.cdi.types.Store;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -21,7 +20,6 @@ public class ProductRepository {
         return this.inventory.getProducts();
     }
 
-    @Store
     public Product save(Product item) {
         inventory.add(item);
         return item;
@@ -32,7 +30,6 @@ public class ProductRepository {
         return inventory.findById(id);
     }
 
-    @Store
     public void deleteById(long id) {
         inventory.deleteById(id);
     }

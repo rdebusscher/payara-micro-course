@@ -32,6 +32,17 @@
 
     <build>
         <finalName>jpa</finalName>
+        <plugins>
+            <plugin>
+                <!-- to avoid warning on JDK 11 and Exception on JDK 17 -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.3.2</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+        </plugins>
     </build>
 
 

@@ -9,7 +9,7 @@ See directory _config_.
 - Maven dependencies
 - Root of the Object Graph
 - Define Storage Manager (simplified version)
-- Use `storeRoot` to store data.
+- Use `store` to store data.
 
 Testing 
 
@@ -19,13 +19,11 @@ Run the `HelloWorld` class.
 
 See directory _config_.
 
-- Use specific file system (disk here but there exists more Abstract File System - AFS - that are supported)
-- Define back directory
-- Define number of IO channels (number of threads to read and write data)
+A typical configuration setting using _properties_, create a foundation out of it (with all the defaults for all the interfaces of MicroStream ), customize it if needed and create the `StorageManager` out of it.
 
 Testing
 
-Run the `FullConfiguration` class.
+Run the `BuilderConfiguration` class.
 
 ## Lazy
 

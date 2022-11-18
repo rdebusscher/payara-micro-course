@@ -2,20 +2,28 @@ package be.rubus.courses.payara.micro.microstream.hello;
 
 public class DataRoot {
 
-    private String content;
-
-    public String getContent() {
-        return this.content;
+    public DataRoot() {
+        throw new RuntimeException("Can't do");
     }
 
-    public void setContent(final String content) {
-        this.content = content;
+    public DataRoot(String value) {
+        this.value = value;
+    }
+
+    private String value;
+
+    public String getValue() {
+        return this.value;
+    }
+
+    public void setValue(final String value) {
+        this.value = value;
     }
 
     @Override
     public String toString() {
         return "DataRoot{" +
-                "content='" + content + '\'' +
+                "content='" + value + '\'' +
                 '}';
     }
 }
