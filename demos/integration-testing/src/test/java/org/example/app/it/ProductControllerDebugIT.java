@@ -8,12 +8,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.containers.output.Slf4jLogConsumer;
-import org.testcontainers.containers.wait.strategy.Wait;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
-import org.testcontainers.utility.DockerImageName;
 import org.testcontainers.utility.MountableFile;
 
 import java.net.URI;
@@ -30,7 +27,7 @@ public class ProductControllerDebugIT {
     private static final MountableFile WAR_FILE = MountableFile.forHostPath(Paths.get("target/myservice.war").toAbsolutePath(), 0777);
 
     @Container
-    public static PayaraMicroContainer payaraMicro = new PayaraMicroContainer(WAR_FILE, true);
+    public static PayaraMicroContainer payaraMicro = new PayaraMicroContainer(WAR_FILE, false);
 
     public static ProductService service;
 

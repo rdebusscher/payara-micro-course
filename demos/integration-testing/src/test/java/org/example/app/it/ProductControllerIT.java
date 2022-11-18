@@ -30,7 +30,7 @@ public class ProductControllerIT {
     private static final MountableFile WAR_FILE = MountableFile.forHostPath(Paths.get("target/myservice.war").toAbsolutePath(), 0777);
 
     @Container
-    public static GenericContainer container = new GenericContainer(DockerImageName.parse("payara/micro:5.2022.2-jdk11"))
+    public static GenericContainer<?> container = new GenericContainer(DockerImageName.parse("payara/micro:5.2022.4-jdk11"))
             .withExposedPorts(8080)
             .withCopyFileToContainer(WAR_FILE, "/opt/payara/deployments/app.war")
             .waitingFor(Wait.forHttp("/health"))  // Health point of Payara Micro based on MicroProfile Health

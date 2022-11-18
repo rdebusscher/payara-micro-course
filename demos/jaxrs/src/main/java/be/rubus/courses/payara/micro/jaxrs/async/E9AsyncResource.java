@@ -23,6 +23,8 @@ public class E9AsyncResource {
             future.complete("Welcome to the async world");
             return null;
         });
+        // project loom :  JDK19
+        // Virtual Threads , Structured concurrency
         return future;
     }
 

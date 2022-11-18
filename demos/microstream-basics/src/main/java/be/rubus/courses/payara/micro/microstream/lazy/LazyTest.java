@@ -1,7 +1,5 @@
 package be.rubus.courses.payara.micro.microstream.lazy;
 
-import one.microstream.memory.MemoryStatistics;
-import one.microstream.memory.MemoryStatisticsProvider;
 import one.microstream.memory.XMemory;
 import one.microstream.storage.embedded.types.EmbeddedStorage;
 import one.microstream.storage.types.StorageManager;
@@ -16,7 +14,7 @@ public class LazyTest {
         // Application-specific root instance
         LazyRoot root = new LazyRoot();
 
-                System.out.printf("Available Heap (Before MicroStream started) %,d %n", Runtime.getRuntime().freeMemory());
+        System.out.printf("Available Heap (Before MicroStream started) %,d %n", Runtime.getRuntime().freeMemory());
         // Initialize a storage manager ("the database") with the given directory and defaults for everything else.
         try (StorageManager storageManager = EmbeddedStorage.start(root, Paths.get("target/lazyData"))) {
 

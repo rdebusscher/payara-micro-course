@@ -20,7 +20,6 @@ import be.rubus.microstream.testing.model.Product;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.Collection;
 import java.util.List;
 
 /**
