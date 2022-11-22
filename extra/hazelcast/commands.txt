@@ -1,0 +1,15 @@
+# Build the application
+
+mvn clean package
+
+# Start 2 instances of Payara Micro - on 2 different ports (local scenario)
+
+java -jar payara-micro.jar --port 8080 /Users/rubus/education/payara-micro-course/extra/hazelcast/target/cluster.war
+
+java -jar payara-micro.jar --port 8081 /Users/rubus/education/payara-micro-course/extra/hazelcast/target/cluster.war
+
+# Call endpoints
+
+curl localhost:8080/cluster/counter
+
+curl localhost:8081/cluster/counter
