@@ -59,7 +59,7 @@ public class BuilderConfiguration {
 
     }
 
-    private static EmbeddedStorageManager createStorageManager(DataStorage root) {
+    private static StorageManager createStorageManager(DataStorage root) {
 
         // requires  microstream-storage-embedded-configuration dependency
         return EmbeddedStorageConfiguration.Builder()

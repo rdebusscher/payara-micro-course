@@ -22,6 +22,7 @@ public class SerializerTest {
         printHierarchy(reconstructed);
 
         System.out.printf("Are this the same objects ? %s %n", theBoss == reconstructed);
+        System.out.printf("Are this the objects equals ? %s %n", theBoss.equals(reconstructed));
 
     }
 

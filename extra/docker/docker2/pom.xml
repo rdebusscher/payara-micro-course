@@ -38,7 +38,7 @@
                                 <tags>
                                     <tag>0.1</tag>
                                 </tags>
-                                <from>payara/micro:5.2022.2-jdk11</from>
+                                <from>payara/micro:5.2022.4-jdk11</from>
                                 <assemblies>
                                     <assembly>
                                         <name>target</name>

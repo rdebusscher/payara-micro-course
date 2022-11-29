@@ -2,6 +2,7 @@ package be.rubus.courses.payara.micro.microstream.hello;
 
 import one.microstream.storage.embedded.types.EmbeddedStorage;
 import one.microstream.storage.embedded.types.EmbeddedStorageManager;
+import one.microstream.storage.types.StorageManager;
 
 import java.nio.file.Paths;
 import java.util.Date;
@@ -13,7 +14,7 @@ public class HelloWorld {
         DataRoot root = new DataRoot("");
 
         // Initialize a storage manager ("the database") with the given directory and defaults for everything else.
-        try (EmbeddedStorageManager storageManager = EmbeddedStorage.start(root, Paths.get("target/data"))) {
+        try (StorageManager storageManager = EmbeddedStorage.start(root, Paths.get("target/data"))) {
 
             // print the root to show its loaded content (stored in the last execution).
             System.out.printf("database content at load : %s %n", root);
