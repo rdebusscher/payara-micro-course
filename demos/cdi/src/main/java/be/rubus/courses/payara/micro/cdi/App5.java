@@ -13,6 +13,7 @@ public class App5 {
             Worker worker = container.select(Worker.class).get();
             String work = worker.work("Just a single button");
             System.out.println("The work result: " + work);
+            System.out.println("actual class: " + worker.getClass().getName());
         }
     }
 }

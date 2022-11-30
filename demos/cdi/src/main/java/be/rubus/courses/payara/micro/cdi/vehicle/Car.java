@@ -13,6 +13,10 @@ public class Car implements Vehicle {
 
     private String name;
 
+    public Car() {
+        // don't do any initializing.
+    }
+
     @PostConstruct
     public void init() {
         // Initialization of the bean should be done in the @PostConstruct annotated method
