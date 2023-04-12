@@ -14,39 +14,4 @@ Sponsored by [MicroStream](https://microstream.one/)
 
 # Cloud Native Microservices with Payara Micro
 
-The demos and labs of the course.  Between brackets, attribution to the original source is indicate.
-
-## Demos
-
-- CDI (1)
-- JAX-RS
-- JPA
-- MicroProfile Config (2)
-- MicroProfile Config cache configuration with Payara Micro
-- MicroProfile Rest Client (2)
-- MicroStream in Java SE (directory microstream-basics)
-- MicroStream CDI integration (3)
-- JPA
-- Integration testing (Testcontainers)
-
-## Labs
-
-
-- Jakarta (JAX-RS, CDI, Bean Validation)
-- Jakarta Advanced (JAX-RS, CDI, Bean Validation)
-- Final (Jakarta lab + MicroStream)
-- Final Advanced (Jakarta Advanced lab + MicroStream CDI integration)
-
-## Extra
-
-- Some additional info about creating Docker images
-
-## Slides
-
-Slides are available within the _Payara-Micro-Workshop.pdf_ file.
-
-## References
-
-(1) - https://github.com/architects4j/payara-fastlane-demos/tree/main/cdi
-(2) - https://github.com/rdebusscher/microprofile-tutorial
-(3) - https://github.com/microstream-one/microstream/tree/master/examples/payara-micro
+2 day training of 2022, is now moved to directory 2022
