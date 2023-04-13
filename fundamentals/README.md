@@ -12,12 +12,24 @@ This work is licensed under a
 
 Sponsored by [MicroStream](https://microstream.one/)
 
-# Cloud Native Microservices with Payara Micro
+# Payara Micro Fundamentals
 
-2 day training of 2022, is now moved to directory 2022
+Some basic functionality
+
+## Demos
+
+- CDI (1)
+- JAX-RS
+- MicroStream in Java SE (directory microstream-basics)
+- MicroStream CDI integration (2)
 
 
-# Fundamentals training
+## Slides
 
-See directory _fundamentals_.
+TODO
 
+## References
+
+(1) - https://github.com/architects4j/payara-fastlane-demos/tree/main/cdi
+
+(2) - https://github.com/microstream-one/microstream/tree/master/examples/payara-micro
